@@ -1,0 +1,163 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Ignite NodeJs with Typescrit - Cars Industry",
+        "description": "This is an application that stores data into an array and is clean once server is refreshed",
+        "version": "1.0.0",
+        "contact": {
+            "name": "Edilson"
+        }
+    },
+    "components": {
+        "schemas": {
+            "Categories": {
+                "type": "array",
+                "items": {
+                    "properties": {
+                        "_id": {
+                            "type": "string",
+                            "format": "uuid",
+                            "example": "4a922a96c00f-1630236234220"
+                        },
+                        "name": {
+                            "type": "string",
+                            "example": "SUV"
+                        },
+                        "description": {
+                            "type": "string",
+                            "example": "Carro do tipo SUV"
+                        }
+                    }
+                }
+            },
+            "CategoryResponse": {
+                "type": "object",
+                "properties": {
+                    "_id": {
+                        "type": "string",
+                        "format": "uuid",
+                        "example": "4a922a96c00f-1630236234220"
+                    },
+                    "name": {
+                        "type": "string",
+                        "example": "SUV"
+                    },
+                    "description": {
+                        "type": "string",
+                        "example": "Carro do tipo SUV"
+                    }
+                }
+            },
+            "CategoryRequest": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "example": "SUV"
+                    },
+                    "description": {
+                        "type": "string",
+                        "example": "Carro do tipo SUV"
+                    }
+                }
+            }
+        }
+    },
+    "paths": {
+        "/api/v1/categories": {
+            "get": {
+                "tags": ["Categories"],
+                "summary": "Get the list of categories",
+                "description": "Get the list of categories",
+                "responses": {
+                    "200": {
+                        "description": "An Array of categories",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Categories"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "requestBody": {
+                    "description": "Create a new category",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CategoryRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "A object of category",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CategoryResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/categories/{id}": {
+            "get": {
+                "tags": ["Categories"],
+                "summary": "Get a category",
+                "description": "Get a category",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "description": "The id of category",
+                        "schema": {
+                            "type": "string",
+                            "minimun": 5
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A object of category",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CategoryResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/uploads": {
+            "post": {
+                "summary": "Upload a file to import categories",
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "file": {
+                                        "type": "string",
+                                        "format": "binary"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
