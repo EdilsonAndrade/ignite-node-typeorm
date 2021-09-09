@@ -2,8 +2,12 @@ import CategoryRepository from "../../repository/implementations/CategoryReposit
 import { LoadCategoryController } from "./LoadCategoryController";
 import { LoadCategoryUseCase } from "./LoadCategoryUseCase";
 
-const categoryRepository = CategoryRepository.getInstance();
-const loadCategoryUseCase = new LoadCategoryUseCase(categoryRepository);
-const loadCategoryController = new LoadCategoryController(loadCategoryUseCase);
+export default (): LoadCategoryController => {
+    const categoryRepository = new CategoryRepository();
+    const loadCategoryUseCase = new LoadCategoryUseCase(categoryRepository);
+    const loadCategoryController = new LoadCategoryController(
+        loadCategoryUseCase
+    );
 
-export { loadCategoryController };
+    return loadCategoryController;
+};

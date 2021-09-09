@@ -1,8 +1,5 @@
-import {
-    ISpecificationDTO,
-    ISpecificationRepository,
-} from "../../repository/ISpecificationRepository";
-import { Specification } from "../../model/Specification";
+import { Specification } from "../../entities/Specification";
+import { ISpecificationRepository } from "../../repository/ISpecificationRepository";
 class ListSpecificationUseCase {
     constructor(private speficitaionRepository: ISpecificationRepository) {}
 

@@ -1,6 +1,6 @@
 import csvParse from "csv-parse";
 import fs from "fs";
-import Category from "../../model/Category";
+import Category from "../../entities/Category";
 import CategoryRepository from "../../repository/implementations/CategoryRepository";
 
 interface ILoadCategories {

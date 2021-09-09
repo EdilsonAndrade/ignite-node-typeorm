@@ -6,14 +6,14 @@ import {
 class CreateCategoryUsecase {
     constructor(private categoryRepository: ICategoryRepository) {}
 
-    execute({ name, description }: ICategoryDTO): void {
-        const categoryExists = this.categoryRepository.findByName(name);
+    async execute({ name, description }: ICategoryDTO): Promise<void> {
+        const categoryExists = await this.categoryRepository.findByName(name);
 
         if (categoryExists) {
             throw new Error("Category already exists");
         }
 
-        this.categoryRepository.save({
+        await this.categoryRepository.save({
             name,
             description,
         });
