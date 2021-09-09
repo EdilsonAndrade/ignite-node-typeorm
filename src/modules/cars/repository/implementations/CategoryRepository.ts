@@ -8,7 +8,6 @@ interface ICategoryDTO {
 }
 class CategoryRepository implements ICategoryRepository {
     private repository: Repository<Category>;
-    private static INSTANCE: CategoryRepository;
 
     constructor() {
         this.repository = getRepository(Category);

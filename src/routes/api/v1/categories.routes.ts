@@ -1,12 +1,12 @@
-import { Request, Response, Router } from "express";
-import createCategoryController from "../../../modules/cars/useCases/createCategory";
+import { Router } from "express";
+import CreateCategoryController from "../../../modules/cars/useCases/createCategory/CreateCategoryController";
 import listCategoryController from "../../../modules/cars/useCases/listCategories";
 
 const categoriesRouter = Router();
 
-categoriesRouter.post("/", async (request: Request, response: Response) => {
-    return await createCategoryController().handle(request, response);
-});
+const createCategoryController = new CreateCategoryController();
+
+categoriesRouter.post("/", createCategoryController.handle);
 categoriesRouter.get("/", async (request, response) => {
     console.log("reload 2");
 
