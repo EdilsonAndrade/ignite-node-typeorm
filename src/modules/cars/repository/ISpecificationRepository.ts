@@ -7,7 +7,7 @@ export interface ISpecificationDTO {
 }
 
 export interface ISpecificationRepository {
-    save({ name, description }: ISpecificationDTO): Specification;
-    list(): Specification[];
-    findByName(name: string): Specification;
+    save({ name, description }: ISpecificationDTO): Promise<Specification>;
+    list(): Promise<Specification[]>;
+    findByName(name: string): Promise<Specification>;
 }
